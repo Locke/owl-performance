@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: MIT
+files:
+  - &base
+    iri: https://example.com/base.owl
+    name: Base Ontology
+    path: base.owl
+
+  - &individuals01
+    iri: https://example.com/individuals01.owl
+    path: individuals01.owl
+  - &individuals02
+    iri: https://example.com/individuals02.owl
+    path: individuals02.owl
+
+cases:
+  - name: case A
+    files: [*base, *individuals01]
+  - name: case B
+    files: [*base, *individuals02]
