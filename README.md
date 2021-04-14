@@ -45,6 +45,7 @@ See a full example: src/test/resources/example-01/
 YAML settings:
 * `defaultWarmups` (int; optional, default value `1`)
 * `defaultRuns` (int; optional, default value `1`)
+* `defaultDebug` (boolean; optional, default value `false`): if set to true, fail on warnings
 * `files` (list), each having:
   * `iri` (string): required for loading / merging ontologies
   * `name` (string; optional, currently unused)
@@ -53,6 +54,7 @@ YAML settings:
   * `name` (string)
   * `warmups` (int; optional, defaults to `defaultWarmups`): how often to perform reasoning without measuring the duration
   * `runs` (int; optional, defaults to `defaultRuns`): how often to perform reasoning with measuring the duration
+  * `debug` (boolean; optional, defaults to `defaultDebug`)
   * `files` (list): references to the files defined earlier (technically, does not need to be references, but this reduces duplication)
 
 The benchmark test cases will be executed and reported in the defined order.

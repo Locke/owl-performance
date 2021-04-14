@@ -44,7 +44,7 @@ class OWLApiTest {
     }
 
     @BeforeAll
-    public static void init() throws IOException, OWLOntologyCreationException {
+    public static void init() {
         logger.info("init...");
 
         owlAPIBenchmark.init();
@@ -80,7 +80,7 @@ class OWLApiTest {
 
     @ParameterizedTest
     @MethodSource("getTestData")
-    public void runTests(OWLBenchmarkTestCase testCase, OWLOntology ont) throws Exception {
+    public void runTests(OWLBenchmarkTestCase testCase, OWLOntology ont) {
         logger.info("Test started: " + testCase.getName());
 
         owlAPIBenchmark.runTestCase(testCase, ont);

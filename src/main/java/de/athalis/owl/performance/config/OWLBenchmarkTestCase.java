@@ -10,21 +10,28 @@ public class OWLBenchmarkTestCase {
     private static final Logger logger = LoggerFactory.getLogger(OWLBenchmarkTestCase.class);
 
     private String name;
+
+    private Boolean debug = null;
     private Integer warmups = -1;
     private Integer runs = -1;
+
     private List<OWLFile> files;
 
     @Override
     public String toString() {
         return "OWLBenchmarkTestCase{" +
                 "name='" + name + '\'' +
+                ", debug=" + debug +
                 ", warmups=" + warmups +
                 ", runs=" + runs +
                 ", files=" + files +
                 '}';
     }
 
-    public void applyDefaults(int warmups, int runs) {
+    public void applyDefaults(Boolean debug, int warmups, int runs) {
+        if (debug == null) {
+            throw new IllegalArgumentException("default debug must not be null");
+        }
         if (warmups < 0) {
             throw new IllegalArgumentException("default warmups must not be negative");
         }
@@ -32,6 +39,9 @@ public class OWLBenchmarkTestCase {
             throw new IllegalArgumentException("default runs must not be negative");
         }
 
+        if (this.debug == null) {
+            this.debug = debug;
+        }
         if (this.warmups < 0) {
             this.warmups = warmups;
         }
@@ -53,6 +63,14 @@ public class OWLBenchmarkTestCase {
 
     public String getName() {
         return name;
+    }
+
+    public Boolean isDebug() {
+        return debug;
+    }
+
+    public void setDebug(Boolean debug) {
+        this.debug = debug;
     }
 
     public Integer getWarmups() {

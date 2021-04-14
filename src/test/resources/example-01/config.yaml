@@ -16,11 +16,13 @@ files:
 
 defaultWarmups: 5
 defaultRuns: 10
+#defaultDebug: true
 
 cases:
   - name: warmup
     warmups: 20
     runs: 0
+    #debug: false
     files: [*PizzaWithData, *PizzaWithoutData, *PizzaDataFull]
   - name: base
     files: [*PizzaWithData]

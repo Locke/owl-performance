@@ -5,7 +5,6 @@ import de.athalis.owl.performance.config.OWLBenchmarkTestCase;
 import de.athalis.owl.performance.config.OWLFile;
 import de.athalis.owl.performance.config.YamlConfigFile;
 
-import java.io.IOException;
 import java.util.*;
 
 import openllet.core.OpenlletOptions;
@@ -26,9 +25,11 @@ public class OwlAPIBenchmark {
 
     private final YamlConfigFile config;
 
-    private final ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
-    private final OWLReasonerConfiguration reasonerConfig = new SimpleConfiguration(progressMonitor, FreshEntityPolicy.ALLOW,
-            Long.MAX_VALUE, IndividualNodeSetPolicy.BY_SAME_AS);
+    private final ReasonerProgressMonitor progressMonitorNormal = new NullReasonerProgressMonitor();
+    private final ReasonerProgressMonitor progressMonitorDebug = new ConsoleProgressMonitor();
+
+    private final OWLReasonerConfiguration reasonerConfigNormal = new SimpleConfiguration(progressMonitorNormal, FreshEntityPolicy.ALLOW, Long.MAX_VALUE, IndividualNodeSetPolicy.BY_SAME_AS);
+    private final OWLReasonerConfiguration reasonerConfigDebug = new SimpleConfiguration(progressMonitorDebug, FreshEntityPolicy.ALLOW, Long.MAX_VALUE, IndividualNodeSetPolicy.BY_SAME_AS);
 
     public OwlAPIBenchmark(YamlConfigFile config) {
         if (config.getCases() == null || config.getCases().isEmpty()) {
@@ -38,7 +39,7 @@ public class OwlAPIBenchmark {
         this.config = config;
     }
 
-    public void init() throws IOException, OWLOntologyCreationException {
+    public void init() {
         logger.info("init...");
 
         // workaround for https://github.com/Galigator/openllet/issues/38
@@ -49,17 +50,29 @@ public class OwlAPIBenchmark {
         OpenlletOptions.IGNORE_UNSUPPORTED_AXIOMS = false;
 
         for (OWLBenchmarkTestCase testCase : this.config.getCases()) {
-            // NOTE: may throw Exception, for example if an ontology cannot be imported
-            OWLOntologyManager manager = OwlAPIHelper.createPreloadedManager(testCase);
+            OWLOntology ont = null;
 
-            OWLOntology ont = manager.createOntology();
+            try {
+                OWLOntologyManager manager = OwlAPIHelper.createPreloadedManager(testCase);
 
-            for (OWLFile f : testCase.getFiles()) {
-                OWLImportsDeclaration importDeclaration = manager.getOWLDataFactory().getOWLImportsDeclaration(IRI.create(f.getIri()));
-                manager.applyChange(new AddImport(ont, importDeclaration));
+                ont = manager.createOntology();
+
+                for (OWLFile f : testCase.getFiles()) {
+                    OWLImportsDeclaration importDeclaration = manager.getOWLDataFactory().getOWLImportsDeclaration(IRI.create(f.getIri()));
+                    manager.applyChange(new AddImport(ont, importDeclaration));
+                }
+
+                logger.info("[" + testCase.getName() + "]: created merged model");
             }
-
-            logger.info(testCase.getName() + ": created merged model");
+            catch (Exception ex) {
+                if (testCase.isDebug()) {
+                    ex.printStackTrace(System.err);
+                    throw new RuntimeException("failed to create merged model", ex);
+                }
+                else {
+                    logger.warn("[" + testCase.getName() + "]: failed to create merged model", ex);
+                }
+            }
 
             testData.put(testCase, ont);
         }
@@ -71,80 +84,88 @@ public class OwlAPIBenchmark {
         logger.info("init done.");
     }
 
-    public void runTestCase(OWLBenchmarkTestCase testCase, OWLOntology ont) throws Exception {
+    public void runTestCase(OWLBenchmarkTestCase testCase, OWLOntology ont) {
         String testCaseBaseName = testCase.getName();
 
-        int w = 0;
-        int warmups = testCase.getWarmups();
-        long warmupDuration = 0;
-
-        int r = 0;
-        int runs = testCase.getRuns();
-        long runDuration = 0;
-
-        boolean failure = false;
-
-        logger.info("[" + testCaseBaseName + "]: starting warmups...");
-
-        while (!failure && (w < warmups)) {
-            w++;
-            String testCaseName = testCaseBaseName + ", warmup " + w + "/" + warmups;
-            long t = measureReasoningDuration(ont, testCaseName);
-
-            if (t < 0) {
-                failure = true;
-            }
-            else {
-                warmupDuration += t;
-            }
-        }
-
-        logger.info("[" + testCaseBaseName + "]: warmup took " + niceTime(warmupDuration));
-        logger.info("[" + testCaseBaseName + "]: starting runs...");
-
-        while (!failure && (r < runs)) {
-            r++;
-            String testCaseName = testCaseBaseName + ", run " + r + "/" + runs;
-            long t = measureReasoningDuration(ont, testCaseName);
-
-            if (t < 0) {
-                failure = true;
-            }
-            else {
-                runDuration += t;
-            }
-        }
-
-        logger.info("[" + testCaseBaseName + "]: runs took " + niceTime(runDuration));
-
-        long warmupDuration_ms = warmupDuration / (1000*1000);
-        long runDuration_ms = runDuration / (1000*1000);
-
-        if (failure) {
-            results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\tn.a.\tfailed\t" + w + "\t" + r);
+        if (ont == null) {
+            results.add(testCaseBaseName + "\tn.a.\tn.a.\tn.a.\tfailed\tn.a.\tn.a.");
         }
         else {
-            if (runs > 0) {
-                long avg_ns = runDuration / runs;
-                long avg_ms = avg_ns / (1000*1000);
-                results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\t" + avg_ms + "\tpassed\t" + w + "\t" + r);
+            int w = 0;
+            int warmups = testCase.getWarmups();
+            long warmupDuration = 0;
+
+            int r = 0;
+            int runs = testCase.getRuns();
+            long runDuration = 0;
+
+            boolean failure = false;
+
+            logger.info("[" + testCaseBaseName + "]: starting warmups...");
+
+            while (!failure && (w < warmups)) {
+                w++;
+                String testCaseName = testCaseBaseName + ", warmup " + w + "/" + warmups;
+                long t = measureReasoningDuration(ont, testCaseName, testCase.isDebug());
+
+                if (t < 0) {
+                    failure = true;
+                }
+                else {
+                    warmupDuration += t;
+                }
+            }
+
+            logger.info("[" + testCaseBaseName + "]: warmup took " + niceTime(warmupDuration));
+            logger.info("[" + testCaseBaseName + "]: starting runs...");
+
+            while (!failure && (r < runs)) {
+                r++;
+                String testCaseName = testCaseBaseName + ", run " + r + "/" + runs;
+                long t = measureReasoningDuration(ont, testCaseName, testCase.isDebug());
+
+                if (t < 0) {
+                    failure = true;
+                }
+                else {
+                    runDuration += t;
+                }
+            }
+
+            logger.info("[" + testCaseBaseName + "]: runs took " + niceTime(runDuration));
+
+            long warmupDuration_ms = warmupDuration / (1000 * 1000);
+            long runDuration_ms = runDuration / (1000 * 1000);
+
+            if (failure) {
+                results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\tn.a.\tfailed\t" + w + "\t" + r);
             }
             else {
-                results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\tn.a.\tignored\t" + w + "\t" + r);
+                if (runs > 0) {
+                    long avg_ns = runDuration / runs;
+                    long avg_ms = avg_ns / (1000 * 1000);
+                    results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\t" + avg_ms + "\tpassed\t" + w + "\t" + r);
+                }
+                else {
+                    results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\tn.a.\tignored\t" + w + "\t" + r);
+                }
             }
         }
     }
 
-    private long measureReasoningDuration(OWLOntology ont, String testCaseName) throws Exception {
+    private long measureReasoningDuration(OWLOntology ont, String testCaseName, boolean debug) {
         logger.info("[" + testCaseName + "]: starting test case...");
 
+        OWLReasonerConfiguration reasonerConfig = debug ? reasonerConfigDebug : reasonerConfigNormal;
         OpenlletReasoner reasoner = OpenlletReasonerFactory.getInstance().createNonBufferingReasoner(ont, reasonerConfig);
 
         logger.info("[" + testCaseName + "]: created reasoner instance, checking consistency...");
 
         if (!reasoner.isConsistent()) {
-            results.add(testCaseName + "\tinconsistent");
-            throw new Exception(testCaseName + ": inconsistent");
+            if (debug) {
+                throw new RuntimeException(testCaseName + ": inconsistent");
+            }
+            return -1;
         }
         else {
             logger.info("[" + testCaseName + "]: consistent, precomputeInferences...");
@@ -159,15 +180,18 @@ public class OwlAPIBenchmark {
             catch (Exception ex2) {
                 precomputeInferencesDuration = System.nanoTime() - t1;
                 ex = ex2;
-                ex2.printStackTrace(System.err);
+                if (debug) {
+                    ex2.printStackTrace(System.err);
+                }
             }
 
             logger.info("[" + testCaseName + "]: precomputeInferences took " + niceTime(precomputeInferencesDuration));
 
             if (ex != null) {
-                // TODO: just keep as result. Throwing makes debugging easier though
-                throw new Exception(testCaseName + ": exception occurred", ex);
-                // return -1;
+                if (debug) {
+                    throw new RuntimeException(testCaseName + ": exception occurred", ex);
+                }
+                return -2;
             }
             else {
                 return precomputeInferencesDuration;

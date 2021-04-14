@@ -13,6 +13,7 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 public class YamlConfigFile {
 
+    private boolean defaultDebug = false;
     private Integer defaultWarmups = 1;
     private Integer defaultRuns = 1;
 
@@ -46,17 +47,26 @@ public class YamlConfigFile {
             throw new IllegalArgumentException("default runs must not be negative");
         }
 
-        this.cases.forEach(f -> f.applyDefaults(this.defaultWarmups, this.defaultRuns));
+        this.cases.forEach(f -> f.applyDefaults(this.defaultDebug, this.defaultWarmups, this.defaultRuns));
     }
 
     @Override
     public String toString() {
         return "YamlConfigFile{" +
-                "defaultWarmups=" + defaultWarmups +
+                "defaultDebug=" + defaultDebug +
+                ", defaultWarmups=" + defaultWarmups +
                 ", defaultRuns=" + defaultRuns +
                 ", files=" + files +
                 ", cases=" + cases +
                 '}';
+    }
+
+    public boolean isDefaultDebug() {
+        return defaultDebug;
+    }
+
+    public void setDefaultDebug(boolean defaultDebug) {
+        this.defaultDebug = defaultDebug;
     }
 
     public Integer getDefaultWarmups() {
