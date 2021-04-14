@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData" uri="PizzaTutorialWithoutDataV2.owl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1618382592528" name="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorial" uri="PizzaTutorialWithDataV2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1618382592528" name="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull" uri="PizzaTutorialDataFull.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1618382592528" name="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData" uri="PizzaTutorialWithoutDataV2.owl"/>
+    </group>
+</catalog>

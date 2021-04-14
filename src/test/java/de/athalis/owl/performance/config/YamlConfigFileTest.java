@@ -23,20 +23,18 @@ public class YamlConfigFileTest {
         List<OWLBenchmarkTestCase> testCases = exampleConfig.getCases();
         assertNotNull(testCases);
 
-        assertEquals(2, testCases.size());
+        assertEquals(3, testCases.size());
         for (OWLBenchmarkTestCase testCase : testCases) {
             List<OWLFile> files = testCase.getFiles();
             assertNotNull(files);
 
-            assertEquals(2, files.size());
-            OWLFile base = files.get(0);
-            OWLFile individuals = files.get(1);
+            assertTrue(files.size() > 0 && files.size() < 4);
 
-            assertEquals("Base Ontology", base.getName());
-            assertNull(individuals.getName());
+            for (OWLFile file : files) {
+                assertNotNull(file.getIri());
+                assertNotNull(file.getPathURI());
+            }
         }
-
-        System.out.println("exampleConfig: " + exampleConfig.toString());
     }
 
 }

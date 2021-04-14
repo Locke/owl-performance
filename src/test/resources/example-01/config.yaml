@@ -1,19 +1,23 @@
 # SPDX-License-Identifier: MIT
 files:
-  - &base
-    iri: https://example.com/base.owl
-    name: Base Ontology
-    path: base.owl
+  - &PizzaWithData
+    iri: http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorial
+    name: Pizza Tutorial with data (v2)
+    path: PizzaTutorialWithDataV2.owl
 
-  - &individuals01
-    iri: https://example.com/individuals01.owl
-    path: individuals01.owl
-  - &individuals02
-    iri: https://example.com/individuals02.owl
-    path: individuals02.owl
+  - &PizzaWithoutData
+    iri: http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData
+    name: Pizza Tutorial without data (v2)
+    path: PizzaTutorialWithoutDataV2.owl
+
+  - &PizzaDataFull
+    iri: http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull
+    path: PizzaTutorialDataFull.owl
 
 cases:
-  - name: case A
-    files: [*base, *individuals01]
-  - name: case B
-    files: [*base, *individuals02]
+  - name: base
+    files: [*PizzaWithData]
+  - name: no data
+    files: [*PizzaWithoutData]
+  - name: merged data
+    files: [*PizzaWithoutData, *PizzaDataFull]

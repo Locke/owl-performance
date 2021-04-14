@@ -1,0 +1,379 @@
+<?xml version="1.0"?>
+<!-- SPDX-License-Identifier: AGPL-3.0-or-later -->
+<rdf:RDF xmlns="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#"
+     xml:base="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:PizzaTutorialWithoutData="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull">
+        <owl:imports rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#AmericanaHotPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">767</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#AmericanaHotPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">675</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza3 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#AmericanaHotPizza"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#AmericanaPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">723</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaPizza2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaPizza2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#AmericanaPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">543</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CheesyPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CheesyPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#CheesyPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">378</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Chef -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Chef">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Employee"/>
+        <PizzaTutorialWithoutData:hasPhone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">415-555-1234</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:ssn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">333-22-2334</PizzaTutorialWithoutData:ssn>
+        <PizzaTutorialWithoutData:ssn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">333-22-4444</PizzaTutorialWithoutData:ssn>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#ChicagoAmericanaHotPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#ChicagoAmericanaHotPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#AmericanaHotPizza"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CustomPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CustomPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Pizza"/>
+        <PizzaTutorialWithoutData:hasTopping rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#OliveTopping1"/>
+        <PizzaTutorialWithoutData:hasTopping rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SpicyBeefTopping1"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CustomPizza2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CustomPizza2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Pizza"/>
+        <PizzaTutorialWithoutData:hasTopping rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#GreenPepperTopping2"/>
+        <PizzaTutorialWithoutData:hasTopping rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MushroomTopping2"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Hot"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza1"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza2"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3332</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer10 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer10">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Mild"/>
+        <PizzaTutorialWithoutData:hasDiscount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</PizzaTutorialWithoutData:hasDiscount>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3335</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Medium"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CustomPizza2"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MargheritaPizza1"/>
+        <PizzaTutorialWithoutData:hasPhone>555-1113342</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer3 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Mild"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MargheritaPizza2"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SohoPizza1"/>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer4 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Hot"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaHotPizza3"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza1"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3339</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer5 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Medium"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaPizza1"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MediumVeggiePizza1"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3339</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer6 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Medium"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#AmericanaPizza2"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3338</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer7 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Mild"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CheesyPizza1"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3337</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer8 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Hot"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#ChicagoAmericanaHotPizza1"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#CustomPizza1"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3336</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer9 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer9">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Customer"/>
+        <PizzaTutorialWithoutData:hasSpicinessPreference rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Hot"/>
+        <PizzaTutorialWithoutData:purchasedPizza rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza3"/>
+        <PizzaTutorialWithoutData:hasPhone>555-111-3334</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:numberOfPizzasPurchased rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</PizzaTutorialWithoutData:numberOfPizzasPurchased>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#GreenPepperTopping2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#GreenPepperTopping2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#GreenPepperTopping"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#HotVeggiePizza"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#HotVeggiePizza"/>
+        <PizzaTutorialWithoutData:purchasedByCustomer rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer4"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza3 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#HotVeggiePizza3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#HotVeggiePizza"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Manager -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Manager">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Employee"/>
+        <PizzaTutorialWithoutData:hasPhone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">123-345-4567</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:hasPhone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">415-5554567</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:ssn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">321-23-4532</PizzaTutorialWithoutData:ssn>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MargheritaPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MargheritaPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#MargheritaPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">263</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MargheritaPizza2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MargheritaPizza2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#MargheritaPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">376</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MediumVeggiePizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MediumVeggiePizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#MediumVeggiePizza"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MushroomTopping2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#MushroomTopping2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#MushroomTopping"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#OliveTopping1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#OliveTopping1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#OliveTopping"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SohoPizza1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SohoPizza1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#SohoPizza"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">342</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SohoPizza2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SohoPizza2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#SohoPizza"/>
+        <PizzaTutorialWithoutData:purchasedByCustomer rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Customer10"/>
+        <PizzaTutorialWithoutData:hasCaloricContent rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">322</PizzaTutorialWithoutData:hasCaloricContent>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SpicyBeefTopping1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#SpicyBeefTopping1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#SpicyBeefTopping"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Waiter1 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Waiter1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Employee"/>
+        <PizzaTutorialWithoutData:hasPhone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">123-234-3434</PizzaTutorialWithoutData:hasPhone>
+        <PizzaTutorialWithoutData:ssn rdf:datatype="http://www.w3.org/2001/XMLSchema#string">123456666</PizzaTutorialWithoutData:ssn>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Waiter2 -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull#Waiter2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialWithoutData#Employee"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
