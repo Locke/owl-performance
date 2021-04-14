@@ -117,17 +117,20 @@ public class OwlAPIBenchmark {
 
         logger.info("[" + testCaseBaseName + "]: runs took " + niceTime(runDuration));
 
+        long warmupDuration_ms = warmupDuration / (1000*1000);
+        long runDuration_ms = runDuration / (1000*1000);
+
         if (failure) {
-            results.add(testCaseBaseName + "\tn.a.\tfailed");
+            results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\tn.a.\tfailed\t" + w + "\t" + r);
         }
         else {
             if (runs > 0) {
-                long t_ns = runDuration / runs;
-                long t_ms = t_ns / (1000*1000);
-                results.add(testCaseBaseName + "\t" + t_ms + "\tpassed\t" + w + "\t" + r);
+                long avg_ns = runDuration / runs;
+                long avg_ms = avg_ns / (1000*1000);
+                results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\t" + avg_ms + "\tpassed\t" + w + "\t" + r);
             }
             else {
-                results.add(testCaseBaseName + "\tn.a.\tpassed\t" + w + "\t" + r);
+                results.add(testCaseBaseName + "\t" + warmupDuration_ms + "\t" + runDuration_ms + "\tn.a.\tignored\t" + w + "\t" + r);
             }
         }
     }

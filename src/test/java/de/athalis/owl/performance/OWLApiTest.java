@@ -19,7 +19,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class OWLApiTest {
 
@@ -55,7 +55,19 @@ class OWLApiTest {
     @AfterAll
     public static void printResults() {
         System.out.println("Results:");
+        System.out.println("case\twarmupDuration_ms\trunDuration_ms\tavg_ms\tresult\twarmups\truns");
         owlAPIBenchmark.results.forEach(System.out::println);
+
+        assertEquals(4, owlAPIBenchmark.results.size());
+
+        for (String resultLine : owlAPIBenchmark.results) {
+            if (resultLine.startsWith("warmup")) {
+                assertTrue(resultLine.contains("ignored"));
+            }
+            else {
+                assertTrue(resultLine.contains("passed"));
+            }
+        }
     }
 
 
