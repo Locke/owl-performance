@@ -72,15 +72,63 @@ public class OwlAPIBenchmark {
     }
 
     public void runTestCase(OWLBenchmarkTestCase testCase, OWLOntology ont) throws Exception {
-        String testCaseName = testCase.getName();
+        String testCaseBaseName = testCase.getName();
 
-        long t = measureReasoningDuration(ont, testCaseName);
+        int w = 0;
+        int warmups = testCase.getWarmups();
+        long warmupDuration = 0;
 
-        if (t < 0) {
-            results.add(testCaseName + "\t" + t + "\tfailed");
+        int r = 0;
+        int runs = testCase.getRuns();
+        long runDuration = 0;
+
+        boolean failure = false;
+
+        logger.info("[" + testCaseBaseName + "]: starting warmups...");
+
+        while (!failure && (w < warmups)) {
+            w++;
+            String testCaseName = testCaseBaseName + ", warmup " + w + "/" + warmups;
+            long t = measureReasoningDuration(ont, testCaseName);
+
+            if (t < 0) {
+                failure = true;
+            }
+            else {
+                warmupDuration += t;
+            }
+        }
+
+        logger.info("[" + testCaseBaseName + "]: warmup took " + niceTime(warmupDuration));
+        logger.info("[" + testCaseBaseName + "]: starting runs...");
+
+        while (!failure && (r < runs)) {
+            r++;
+            String testCaseName = testCaseBaseName + ", run " + r + "/" + runs;
+            long t = measureReasoningDuration(ont, testCaseName);
+
+            if (t < 0) {
+                failure = true;
+            }
+            else {
+                runDuration += t;
+            }
+        }
+
+        logger.info("[" + testCaseBaseName + "]: runs took " + niceTime(runDuration));
+
+        if (failure) {
+            results.add(testCaseBaseName + "\tn.a.\tfailed");
         }
         else {
-            results.add(testCaseName + "\t" + t + "\tpassed");
+            if (runs > 0) {
+                long t_ns = runDuration / runs;
+                long t_ms = t_ns / (1000*1000);
+                results.add(testCaseBaseName + "\t" + t_ms + "\tpassed\t" + w + "\t" + r);
+            }
+            else {
+                results.add(testCaseBaseName + "\tn.a.\tpassed\t" + w + "\t" + r);
+            }
         }
     }
 
@@ -111,7 +159,6 @@ public class OwlAPIBenchmark {
                 ex2.printStackTrace(System.err);
             }
 
-            long precomputeInferencesMilliSeconds = precomputeInferencesDuration / (1000*1000);
             logger.info("[" + testCaseName + "]: precomputeInferences took " + niceTime(precomputeInferencesDuration));
 
             if (ex != null) {
@@ -120,18 +167,18 @@ public class OwlAPIBenchmark {
                 // return -1;
             }
             else {
-                return precomputeInferencesMilliSeconds;
+                return precomputeInferencesDuration;
             }
         }
     }
 
-    private static String niceTime(long durationMilliSeconds) {
-        long seconds = Math.round(durationMilliSeconds / 1e9);
-        if (seconds > 0) {
+    private static String niceTime(long durationNanoSeconds) {
+        long seconds = Math.round(durationNanoSeconds / 1e9);
+        if (seconds > 10) {
             return String.format("%02d:%02d", seconds / 60, seconds % 60);
         }
         else {
-            return Math.round(durationMilliSeconds / 1e6) + " ms";
+            return Math.round(durationNanoSeconds / 1e6) + " ms";
         }
     }
 }

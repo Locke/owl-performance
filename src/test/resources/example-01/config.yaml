@@ -14,7 +14,14 @@ files:
     iri: http://www.semanticweb.org/pizzatutorial/ontologies/2020/PizzaTutorialDataFull
     path: PizzaTutorialDataFull.owl
 
+defaultWarmups: 5
+defaultRuns: 10
+
 cases:
+  - name: warmup
+    warmups: 20
+    runs: 0
+    files: [*PizzaWithData, *PizzaWithoutData, *PizzaDataFull]
   - name: base
     files: [*PizzaWithData]
   - name: no data

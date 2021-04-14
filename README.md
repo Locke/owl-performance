@@ -43,15 +43,20 @@ cases:
 See a full example: src/test/resources/example-01/
 
 YAML settings:
+* `defaultWarmups` (int; optional, default value `1`)
+* `defaultRuns` (int; optional, default value `1`)
 * `files` (list), each having:
   * `iri` (string): required for loading / merging ontologies
   * `name` (string; optional, currently unused)
   * `path` (string): path to owl file, relative to the yaml file
 * `cases` (list), each having:
   * `name` (string)
+  * `warmups` (int; optional, defaults to `defaultWarmups`): how often to perform reasoning without measuring the duration
+  * `runs` (int; optional, defaults to `defaultRuns`): how often to perform reasoning with measuring the duration
   * `files` (list): references to the files defined earlier (technically, does not need to be references, but this reduces duplication)
 
 The benchmark test cases will be executed and reported in the defined order.
+As seen in example-01 setting `warmups` of the first benchmark and `runs` to 0 can be used to warmup the JVM with a comprehensive ontology, ignoring the result.
 
 # License
 

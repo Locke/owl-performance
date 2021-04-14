@@ -13,6 +13,9 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 public class YamlConfigFile {
 
+    private Integer defaultWarmups = 1;
+    private Integer defaultRuns = 1;
+
     private List<OWLFile> files;
     private List<OWLBenchmarkTestCase> cases;
 
@@ -25,6 +28,7 @@ public class YamlConfigFile {
             URI root = configFileURL.toURI().resolve(".");
 
             obj.setRoot(root);
+            obj.applyDefaults();
 
             return obj;
         }
@@ -34,12 +38,41 @@ public class YamlConfigFile {
         files.forEach(f -> f.setRoot(root));
     }
 
+    private void applyDefaults() {
+        if (this.defaultWarmups < 0) {
+            throw new IllegalArgumentException("default warmups must not be negative");
+        }
+        if (this.defaultRuns < 0) {
+            throw new IllegalArgumentException("default runs must not be negative");
+        }
+
+        this.cases.forEach(f -> f.applyDefaults(this.defaultWarmups, this.defaultRuns));
+    }
+
     @Override
     public String toString() {
         return "YamlConfigFile{" +
-                "files=" + files +
+                "defaultWarmups=" + defaultWarmups +
+                ", defaultRuns=" + defaultRuns +
+                ", files=" + files +
                 ", cases=" + cases +
                 '}';
+    }
+
+    public Integer getDefaultWarmups() {
+        return defaultWarmups;
+    }
+
+    public void setDefaultWarmups(Integer defaultWarmups) {
+        this.defaultWarmups = defaultWarmups;
+    }
+
+    public Integer getDefaultRuns() {
+        return defaultRuns;
+    }
+
+    public void setDefaultRuns(Integer defaultRuns) {
+        this.defaultRuns = defaultRuns;
     }
 
     public void setFiles(List<OWLFile> files) {

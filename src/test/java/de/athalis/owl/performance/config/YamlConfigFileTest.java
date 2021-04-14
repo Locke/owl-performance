@@ -23,7 +23,7 @@ public class YamlConfigFileTest {
         List<OWLBenchmarkTestCase> testCases = exampleConfig.getCases();
         assertNotNull(testCases);
 
-        assertEquals(3, testCases.size());
+        assertEquals(4, testCases.size());
         for (OWLBenchmarkTestCase testCase : testCases) {
             List<OWLFile> files = testCase.getFiles();
             assertNotNull(files);
