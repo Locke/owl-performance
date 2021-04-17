@@ -59,6 +59,8 @@ See the file [LICENSE.md](LICENSE.md). Summary:
 
 All code is released under the MIT license, which is provided in the file [LICENSE.MIT.txt](LICENSE.MIT.txt).
 
+The example is based on the [Protégé Pizza Tutorial](https://www.michaeldebellis.com/post/new-protege-pizza-tutorial) and licensed under the GNU Affero General Public License v3.0, which is provided in the file [LICENSE.AGPL-3.0.md](LICENSE.AGPL-3.0.md).
+
 # Development
 
 Do not expect much development from my side, this was created for a single use-case.
