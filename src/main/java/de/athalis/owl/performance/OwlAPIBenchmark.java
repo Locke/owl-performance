@@ -5,13 +5,17 @@ import de.athalis.owl.performance.config.OWLBenchmarkTestCase;
 import de.athalis.owl.performance.config.OWLFile;
 import de.athalis.owl.performance.config.YamlConfigFile;
 
+import java.io.File;
 import java.util.*;
 
 import openllet.core.OpenlletOptions;
 import openllet.owlapi.OpenlletReasoner;
 import openllet.owlapi.OpenlletReasonerFactory;
+import openllet.owlapi.explanation.PelletExplanation;
+import org.semanticweb.owlapi.formats.RDFXMLDocumentFormat;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
+import org.semanticweb.owlapi.util.OWLOntologyMerger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -161,13 +165,50 @@ public class OwlAPIBenchmark {
 
         logger.info("[" + testCaseName + "]: created reasoner instance, checking consistency...");
 
+        if (debug) {
+            reasoner.getKB().setDoExplanation(true);
+        }
+
         if (!reasoner.isConsistent()) {
             if (debug) {
+                logger.error("[" + testCaseName + "]: inconsistent");
+
+                try {
+                    logger.info("[" + testCaseName + "]: dumping merged file...");
+                    File tmp = File.createTempFile("merged", ".owl");
+                    OWLOntologyManager manager = ont.getOWLOntologyManager();
+                    OWLOntology ontMerged = new OWLOntologyMerger(manager).createMergedOntology(manager, null);
+                    ontMerged.saveOntology(new RDFXMLDocumentFormat(), IRI.create(tmp));
+                    logger.info("[" + testCaseName + "]: dumped to: " + tmp);
+                }
+                catch (Exception ex) {
+                    // ignore, as that is just nice to have
+                }
+
+                int i = 0;
+                try {
+                    PelletExplanation expGen = new PelletExplanation(reasoner);
+                    Set<Set<OWLAxiom>> ex = expGen.getInconsistencyExplanations(2);
+                    for (Set<OWLAxiom> s : ex) {
+                        i++;
+                        logger.error("[" + testCaseName + "]: explanation #" + i + ": " + s);
+                    }
+                }
+                catch (Exception ex) {
+                    // ignore, as that is just nice to have
+                }
+                if (i == 0) {
+                    logger.error("[" + testCaseName + "]: no explanations found");
+                }
                 throw new RuntimeException(testCaseName + ": inconsistent");
             }
             return -1;
         }
         else {
+            if (debug) {
+                reasoner.getKB().setDoExplanation(false);
+            }
+
             logger.info("[" + testCaseName + "]: consistent, precomputeInferences...");
 
             long t1 = System.nanoTime();
