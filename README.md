@@ -24,6 +24,17 @@ and extend it with an easy to define configuration for benchmark test cases with
 
 # Usage
 
+* download the jar and example from the latest release
+* unzip the example
+
+```shell
+java -jar owl-performance-VERSION-jar-with-dependencies.jar ./config.yaml
+```
+
+The first parameter (`./config.yaml`) is the path to the configuration file.
+
+## Configuration file
+
 Ontology files and benchmark test cases are defined in YAML.
 
 Minimal configuration:
@@ -85,6 +96,15 @@ mvn compile
 mvn test
 mvn package
 ```
+
+## Creating a release
+
+* change the version in `pom.xml` to a stable version identifier
+* commit with "prepare vTAG" & tag this commit
+* draft a release on GitHub for this tag
+* create a fat jar with `mvn package` and upload it to the GitHub release tag
+* zip the example(s), include the LICENSE files and upload it to the GitHub release tag
+* push to GitHub and publish the release
 
 ## TODO / future 
 
