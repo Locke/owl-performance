@@ -120,7 +120,7 @@ public class OwlAPIBenchmark {
                 }
             }
 
-            logger.info("[" + testCaseBaseName + "]: warmup took " + niceTime(warmupDuration));
+            logger.info("[" + testCaseBaseName + "]: warmup took " + Util.niceTime(warmupDuration));
             logger.info("[" + testCaseBaseName + "]: starting runs...");
 
             while (!failure && (r < runs)) {
@@ -136,7 +136,7 @@ public class OwlAPIBenchmark {
                 }
             }
 
-            logger.info("[" + testCaseBaseName + "]: runs took " + niceTime(runDuration));
+            logger.info("[" + testCaseBaseName + "]: runs took " + Util.niceTime(runDuration));
 
             long warmupDuration_ms = warmupDuration / (1000 * 1000);
             long runDuration_ms = runDuration / (1000 * 1000);
@@ -226,7 +226,7 @@ public class OwlAPIBenchmark {
                 }
             }
 
-            logger.info("[" + testCaseName + "]: precomputeInferences took " + niceTime(precomputeInferencesDuration));
+            logger.info("[" + testCaseName + "]: precomputeInferences took " + Util.niceTime(precomputeInferencesDuration));
 
             if (ex != null) {
                 if (debug) {
@@ -237,16 +237,6 @@ public class OwlAPIBenchmark {
             else {
                 return precomputeInferencesDuration;
             }
-        }
-    }
-
-    private static String niceTime(long durationNanoSeconds) {
-        long seconds = Math.round(durationNanoSeconds / 1e9);
-        if (seconds > 10) {
-            return String.format("%02d:%02d", seconds / 60, seconds % 60);
-        }
-        else {
-            return Math.round(durationNanoSeconds / 1e6) + " ms";
         }
     }
 }
