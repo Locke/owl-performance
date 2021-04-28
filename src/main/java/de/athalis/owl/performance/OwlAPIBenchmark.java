@@ -105,7 +105,12 @@ public class OwlAPIBenchmark {
 
             boolean failure = false;
 
-            logger.info("[" + testCaseBaseName + "]: starting warmups...");
+            if (warmups > 0) {
+                logger.info("[" + testCaseBaseName + "]: starting warmups...");
+            }
+            else {
+                logger.debug("[" + testCaseBaseName + "]: no warmups");
+            }
 
             while (!failure && (w < warmups)) {
                 w++;
@@ -120,8 +125,16 @@ public class OwlAPIBenchmark {
                 }
             }
 
-            logger.info("[" + testCaseBaseName + "]: warmup took " + Util.niceTime(warmupDuration));
-            logger.info("[" + testCaseBaseName + "]: starting runs...");
+            if (warmups > 0) {
+                logger.info("[" + testCaseBaseName + "]: warmup took " + Util.niceTime(warmupDuration));
+            }
+
+            if (runs > 0) {
+                logger.info("[" + testCaseBaseName + "]: starting runs...");
+            }
+            else {
+                logger.debug("[" + testCaseBaseName + "]: no runs");
+            }
 
             while (!failure && (r < runs)) {
                 r++;
@@ -136,7 +149,9 @@ public class OwlAPIBenchmark {
                 }
             }
 
-            logger.info("[" + testCaseBaseName + "]: runs took " + Util.niceTime(runDuration));
+            if (runs > 0) {
+                logger.info("[" + testCaseBaseName + "]: runs took " + Util.niceTime(runDuration));
+            }
 
             long warmupDuration_ms = warmupDuration / (1000 * 1000);
             long runDuration_ms = runDuration / (1000 * 1000);
