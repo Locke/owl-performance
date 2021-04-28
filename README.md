@@ -28,10 +28,14 @@ and extend it with an easy to define configuration for benchmark test cases with
 * unzip the example
 
 ```shell
-java -jar owl-performance-VERSION-jar-with-dependencies.jar ./config.yaml
+java -jar owl-performance-VERSION-jar-with-dependencies.jar ./config.yaml 52
 ```
 
 The first parameter (`./config.yaml`) is the path to the configuration file.
+
+The second argument (`52`) is optional.
+It sets the `maxAliasesForCollections` parameter for the SnakeYAML.
+The default value is 50, you might have to increase the value if you defined many ontology files and/or benchmark test cases, as these use references that are prone to denial of service attacks.
 
 ## Configuration file
 

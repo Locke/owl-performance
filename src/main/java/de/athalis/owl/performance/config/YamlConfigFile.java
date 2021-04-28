@@ -8,8 +8,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+import org.yaml.snakeyaml.representer.Representer;
+import org.yaml.snakeyaml.resolver.Resolver;
 
 public class YamlConfigFile {
 
@@ -21,7 +25,12 @@ public class YamlConfigFile {
     private List<OWLBenchmarkTestCase> cases;
 
     public static YamlConfigFile readYaml(final URL configFileURL) throws IOException, URISyntaxException {
-        Yaml yaml = new Yaml(new Constructor(YamlConfigFile.class));
+        LoaderOptions loadingConfig = new LoaderOptions();
+        return readYaml(configFileURL, loadingConfig);
+    }
+
+    public static YamlConfigFile readYaml(final URL configFileURL, LoaderOptions loadingConfig) throws IOException, URISyntaxException {
+        Yaml yaml = new Yaml(new Constructor(YamlConfigFile.class, loadingConfig), new Representer(), new DumperOptions(), loadingConfig, new Resolver());
 
         try (InputStream inputStream = configFileURL.openStream()) {
             YamlConfigFile obj = yaml.load(inputStream);

@@ -12,6 +12,7 @@ import java.util.Map;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.LoaderOptions;
 
 public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
@@ -19,11 +20,25 @@ public class Main {
     public static void main(String[] args) {
         long initStartTime = System.nanoTime();
 
-        if (args.length != 1) {
-            throw new IllegalArgumentException("needs single parameter with path to yaml config file");
+        if (args.length < 1 || args.length > 2) {
+            throw new IllegalArgumentException("needs first parameter as path to yaml config file and optionally second parameter for yaml maxAliasesForCollections limit");
         }
 
         String pathRaw = args[0];
+        String limitRaw = args.length > 1 ? args[1] : null;
+
+        LoaderOptions loadingConfig = new LoaderOptions();
+        if (limitRaw != null && !limitRaw.isBlank()) {
+            try {
+                int limit = Integer.parseInt(limitRaw, 10);
+                loadingConfig.setMaxAliasesForCollections(limit);
+            }
+            catch (Exception ex) {
+                logger.warn("unable to parse yaml limit", ex);
+            }
+        }
+
+        logger.info("maxAliasesForCollections: " + loadingConfig.getMaxAliasesForCollections());
 
         try {
             URI uri;
@@ -42,7 +57,7 @@ public class Main {
             URL url = uri.normalize().toURL();
 
             logger.info("loading config from: " + url);
-            YamlConfigFile config = YamlConfigFile.readYaml(url);
+            YamlConfigFile config = YamlConfigFile.readYaml(url, loadingConfig);
             logger.debug("config loaded");
 
             OwlAPIBenchmark owlAPIBenchmark = new OwlAPIBenchmark(config);
