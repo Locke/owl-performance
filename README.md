@@ -1,4 +1,4 @@
-CI & Version
+[![build status](https://travis-ci.com/Locke/owl-performance.svg?branch=main)](https://travis-ci.com/Locke/owl-performance)
 
 # About
 
